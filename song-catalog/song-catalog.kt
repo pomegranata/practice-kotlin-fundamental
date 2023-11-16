@@ -1,4 +1,4 @@
-class songStructure(
+class SongStructure(
     val title: String,
     val artist: String,
     val yearPublished: Int,
