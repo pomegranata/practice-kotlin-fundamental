@@ -1,5 +1,5 @@
-class Phone(var isScreenLightOn: Boolean = false){
-    fun switchOn() {
+open class Phone(var isScreenLightOn: Boolean = false){
+    open fun switchOn() {
         isScreenLightOn = true
     }
 
@@ -8,9 +8,38 @@ class Phone(var isScreenLightOn: Boolean = false){
     }
 
     fun checkPhoneScreenLight() {
-        val checkPhoneScreenLight = if (isScreenLightOn) "on" else "off"
+        val phoneScreenLight = if (isScreenLightOn) "on" else "off"
         println("The phone screen's light is $phoneScreenLight.")
     }
 }
 
-class FoldablePhone(var folded: Boolean)
+class FoldablePhone(var isFolded: Boolean = true) :
+    Phone() {
+        
+        override fun switchOn() {
+            if (isFolded == false) {
+                isScreenLightOn = true
+            }
+        }
+
+        fun fold() {
+            isFolded = true
+        }
+
+        fun unfold() {
+            isFolded = false
+        }
+
+    }
+
+
+fun main() {
+    
+    val foldedPhone = FoldablePhone()
+    
+    foldedPhone.switchOn()
+    foldedPhone.checkPhoneScreenLight()
+    foldedPhone.unfold()
+    foldedPhone.switchOn()
+    foldedPhone.checkPhoneScreenLight()
+}
